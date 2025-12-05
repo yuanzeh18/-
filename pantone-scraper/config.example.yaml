@@ -1,7 +1,7 @@
 # 网站登录信息
 auth:
-  username: "your_username"
-  password: "your_password"
+  username: "liuxiaoping"
+  password: "jty123"
 
 # 爬取设置
 scraper:
