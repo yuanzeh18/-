@@ -1,23 +1,23 @@
 # 网站登录信息
 auth:
-  username: ""
-  password: ""
+  username: "liuxiaoping"
+  password: "jty123"
 
 # 爬取设置
 scraper:
   base_url: "https://www.popfashioninfo.com/styles/designerbrand/"
-  delay_min: 2
-  delay_max: 5
-  timeout: 30
-  max_retries: 3
+  delay_min: 2  # 最小请求延迟（秒）
+  delay_max: 5  # 最大请求延迟（秒）
+  timeout: 30   # 请求超时时间（秒）
+  max_retries: 3  # 最大重试次数
 
 # 下载设置
 download:
   image_dir: "data/images"
   output_dir: "output"
-  concurrent_downloads: 3
+  concurrent_downloads: 3  # 并发下载数
 
-# 代理设置
+# 代理设置（可选）
 proxy:
   enabled: false
   http: ""
@@ -25,5 +25,5 @@ proxy:
 
 # 浏览器设置
 browser:
-  headless: false
-  driver: "chrome"
+  headless: false  # 首次运行建议设为 false 以便手动处理验证码
+  driver: "chrome"  # chrome 或 firefox
