@@ -1,0 +1,29 @@
+# 网站登录信息
+auth:
+  username: ""
+  password: ""
+
+# 爬取设置
+scraper:
+  base_url: "https://www.popfashioninfo.com/styles/designerbrand/"
+  delay_min: 2
+  delay_max: 5
+  timeout: 30
+  max_retries: 3
+
+# 下载设置
+download:
+  image_dir: "data/images"
+  output_dir: "output"
+  concurrent_downloads: 3
+
+# 代理设置
+proxy:
+  enabled: false
+  http: ""
+  https: ""
+
+# 浏览器设置
+browser:
+  headless: false
+  driver: "chrome"

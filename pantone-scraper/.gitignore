@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Config with credentials - rename config.example.yaml
+# Uncomment the line below to ignore local config with credentials:
+# config.yaml
+
+# Downloaded data (may be large)
+data/images/*.jpg
+data/images/*.jpeg
+data/images/*.png
+data/images/*.gif
+data/images/*.webp
+
+# Log files
+logs/
+*.log
+
+# Output data (generated)
+output/*.json
+output/*.csv
+
+# Debug files
+debug_*.html
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
