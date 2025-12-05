@@ -25,16 +25,15 @@ class PageParser:
         logger: 日志记录器
     """
     
-    # 潘通色号正则表达式模式
+    # 潘通色号正则表达式模式（按从最具体到最一般的顺序排列）
+    # 颜色名通常为1-2个首字母大写的英文单词
     PANTONE_PATTERNS = [
-        # PANTONE 19-4052 Classic Blue
-        r'PANTONE\s+(\d{2}-\d{4})\s+([A-Za-z\s]+)',
-        # PANTONE 19-4052 TCX Classic Blue
-        r'PANTONE\s+(\d{2}-\d{4})\s*(?:TCX|TPX|TPG|C|U)?\s+([A-Za-z\s]+)',
-        # 19-4052 Classic Blue
-        r'(\d{2}-\d{4})\s+([A-Za-z\s]+)',
-        # PANTONE Classic Blue 19-4052
-        r'PANTONE\s+([A-Za-z\s]+)\s+(\d{2}-\d{4})',
+        # PANTONE 19-4052 TCX Classic Blue（带TCX/TPX等后缀）
+        r'PANTONE\s+(\d{2}-\d{4})\s*(?:TCX|TPX|TPG|C|U)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
+        # PANTONE 19-4052 Classic Blue（标准格式）
+        r'PANTONE\s+(\d{2}-\d{4})\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)',
+        # PANTONE Classic Blue 19-4052（颜色名在前）
+        r'PANTONE\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(\d{2}-\d{4})(?!\d)',
     ]
     
     def __init__(self, base_url: str = "https://www.popfashioninfo.com"):
@@ -270,7 +269,9 @@ class PageParser:
             潘通色卡列表
         """
         colors = []
-        text = soup.get_text()
+        # 获取文本并规范化空白字符（将换行符替换为单个空格，多个空格合并为一个）
+        text = soup.get_text(separator=' ')
+        text = ' '.join(text.split())
         
         # 使用正则表达式匹配
         for pattern in self.PANTONE_PATTERNS:
@@ -324,7 +325,9 @@ class PageParser:
             潘通色卡列表
         """
         colors = []
-        text = container.get_text()
+        # 规范化空白字符
+        text = container.get_text(separator=' ')
+        text = ' '.join(text.split())
         
         for pattern in self.PANTONE_PATTERNS:
             matches = re.findall(pattern, text, re.IGNORECASE)
